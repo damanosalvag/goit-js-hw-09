@@ -20,6 +20,7 @@ const activation = (event) => {
   let delay = parseInt(form.delay.value, 10);
   let step = parseInt(form.step.value, 10);
   let amount = parseInt(form.amount.value, 10);
+  let temp = 0;
 
   for (let i = 1; i <= amount; i++) {
     if (i === 1) {
@@ -30,14 +31,16 @@ const activation = (event) => {
         .catch(({ position, delay }) => {
           Notiflix.Notify.failure(`Rejected promise ${position} in ${delay}ms`);
         });
+      temp = delay + step;
     } else {
-        createPromise(i, step)
+        createPromise(i, temp)
           .then(({ position, delay }) => {
             Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
           })
           .catch(({ position, delay }) => {
             Notiflix.Notify.failure(`Rejected promise ${position} in ${delay}ms`);
           });
+      temp += step;
     }
   }
 };
