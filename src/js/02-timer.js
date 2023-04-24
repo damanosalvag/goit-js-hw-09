@@ -16,6 +16,7 @@ startBtn.disabled = true;
 let milSeg = 0;
 let date = new Date();
 
+
 const options = {
   enableTime: true,
   time_24hr: true,
